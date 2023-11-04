@@ -15,7 +15,6 @@ import { useFormState } from "react-dom";
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(createInvoice, initialState);
-  console.log(state);
   return (
     <form action={dispatch} aria-describedby="form-error">
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
@@ -49,10 +48,9 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
               aria-live="polite"
               className="mt-2 text-sm text-red-500"
             >
-              {state.errors.customerId.map((error: string) => {
-                console.log(error);
-                return <p key={error}>{error}</p>;
-              })}
+              {state.errors.customerId.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
             </div>
           ) : null}
         </div>
